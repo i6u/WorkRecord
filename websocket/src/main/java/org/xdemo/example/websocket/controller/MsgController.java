@@ -48,6 +48,7 @@ public class MsgController {
 	// 用户登录
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public ModelAndView doLogin(User user, HttpServletRequest request) {
+		System.out.println(this.getClass().getName()+"-->doLogin");
 		request.getSession().setAttribute("uid", user.getId());
 		request.getSession().setAttribute("name", users.get(user.getId()).getName());
 		return new ModelAndView("redirect:talk");
@@ -56,12 +57,14 @@ public class MsgController {
 	// 跳转到交谈聊天页面
 	@RequestMapping(value = "talk", method = RequestMethod.GET)
 	public ModelAndView talk() {
+		System.out.println(this.getClass().getName()+"-->talk");
 		return new ModelAndView("talk");
 	}
 
 	// 跳转到发布广播页面
 	@RequestMapping(value = "broadcast", method = RequestMethod.GET)
 	public ModelAndView broadcast() {
+		System.out.println(this.getClass().getName()+"-->broadcast:args0");
 		return new ModelAndView("broadcast");
 	}
 
@@ -69,6 +72,7 @@ public class MsgController {
 	@ResponseBody
 	@RequestMapping(value = "broadcast", method = RequestMethod.POST)
 	public void broadcast(String text) throws IOException {
+		System.out.println(this.getClass().getName()+"-->broadcast:args1");
 		Message msg = new Message();
 		msg.setDate(new Date());
 		msg.setFrom(-1L);
